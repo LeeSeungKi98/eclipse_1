@@ -1,5 +1,6 @@
 package _ch02;
 
+import java.util.Random;
 import java.util.Scanner;
 
 
@@ -7,12 +8,12 @@ public class Game {
 
 	public static void main(String[] args) {
 
-		int dap = 48;
+
 		int save = 5;
 
+		int dap = (int) (Math.random() * 101) + 1;
+
 		Scanner scanner = new Scanner(System.in);
-
-
 
 		System.out.println("업!다운!Game!");
 
@@ -25,7 +26,10 @@ public class Game {
 			System.out.println("1에서 100사이의 숫자를 적어주세요.");
 
 			for(int i = 0; i < 5; i++) {
-				System.out.println("남은기회:" + save);
+				if(save != 1) {
+
+					System.out.println("남은기회:" + save);
+				}
 				String number = scanner.nextLine();
 				int num = Integer.parseInt(number);
 				if(dap > num) {
@@ -39,9 +43,13 @@ public class Game {
 
 				save--;
 
+				if(save == 1) {
+					System.out.println("마지막 기회!");
+				}
 			}
 			if(save == 0) {
 				System.out.println("YOU LOSE...");
+				System.out.println("정답:" + dap);
 			}
 		}
 	}
